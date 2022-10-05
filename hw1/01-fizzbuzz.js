@@ -9,7 +9,7 @@ Use console.log() to write the proper output to the command line.
 
 **/
 
-const fizzbuzz = () => {
+
   function fizz(num) {
   for (let i = 1; i <= num; i++) {
     if (i % 2 == 0 && i % 3 == 0) {
