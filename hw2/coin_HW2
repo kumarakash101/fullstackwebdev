@@ -1,0 +1,46 @@
+const calculateChange = (amt) => {
+  //Several Check cases, if the amount is zero, negative or too big
+  if (amt == 0) console.log("Amount cannot be zero.");
+  else if (amt < 0) console.log("Amount cannot be negative.");
+  else if (amt > 10) console.log("Error: the number is too large");
+  else {
+    //Calculate the no of dollars and store it in dollar variable
+    dollar = Math.trunc(amt / 1);
+    remainingquarters = amt - dollar;
+
+    //Calculate the no of Quarters and store it in quarter variable
+    quartes = Math.trunc(remainingquarters / 0.25);
+    remainingdime = remainingquarters - quartes * 0.25;
+
+    //Calculate the no of Dime and store it in dime variable
+    dime = Math.trunc(remainingdime / 0.1);
+    remainingnickles = remainingdime - dime * 0.1;
+
+    //Calculate the no of Nickel and store it in nickel variable
+    nickel = Math.trunc(remainingnickles / 0.05);
+    remainingpennies = remainingnickles - nickel * 0.05;
+
+    //Print the total number of denominations
+    pennies = Math.trunc(remainingpennies / 0.01);
+    console.log(
+      dollar +
+        " dollars, " +
+        quartes +
+        " quarters, " +
+        dime +
+        " dime, " +
+        nickel +
+        " nickel, " +
+        pennies +
+        " pennies"
+    );
+  }
+};
+calculateChange(4.62);
+//4 dollars, 2 quarters, 1 dime, 0 nickel, 2 pennies
+calculateChange(9.74);
+//9 dollars, 2 quarters, 2 dime, 0 nickel, 4 pennies
+calculateChange(0.16);
+//0 dollars, 0 quarters, 1 dime, 1 nickel, 0 pennies
+calculateChange(15.11);
+//Error: the number is too large
