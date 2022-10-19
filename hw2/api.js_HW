@@ -1,0 +1,27 @@
+//TO DO still need to work on this.
+const url = "https://swapi.dev/api/planets/";
+
+let getdata = (url) => {
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      data.next !== null && getdata(data.next);
+
+      return data.results;
+    })
+    .then((countries) => {
+      countries.forEach((country) => {
+        console.log(
+          "Country: ${country.name}-Population ${country.population}"
+        );
+      });
+    })
+    .catch((error) => console.error("this is the error ", error))
+    .finally(() => {
+      console.log("runs everytime");
+    });
+};
+
+getdata(url);
