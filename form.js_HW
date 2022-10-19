@@ -1,0 +1,16 @@
+function onSubmit() {
+  let name = document.getElementById("nameid").value;
+  let email = document.getElementById("emailid").value;
+  let text = document.getElementById("textid").value;
+  let news = document.getElementById("newsid");
+
+  console.log("========Form Submission=======");
+
+  console.log("Name: " + name);
+  console.log("Email: " + email);
+
+  if (!text) console.log("Feedback: No feedback was submitted");
+  else console.log("Feedback: " + text);
+  if (!news.checked) console.log("Newsletter: No, thank you");
+  else console.log("Newsletter: Yes, I would like to join the newsletter");
+}
