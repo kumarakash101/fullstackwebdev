@@ -1,0 +1,53 @@
+const http = require("http");
+const fs = require("fs");
+const url = require("url");
+const querystring = require("querystring");
+//creating a html form and saving it in posthtml
+const posthtml = `<html><head></head><body>
+<form method='post'>
+<label for="name">Name: </label>
+<input type="text" name="Name" id="name"><br />
+<label for="email">Email: </label>
+<input type="email" name="Email" id="email"><br />
+<label for="comments">Comment:</label><br />
+<textarea name="Comments" id="comments" rows="4" cols="27"></textarea><br />
+<label for="newsletter">Newsletter: </label><br />
+<input type="radio" name="Newsletter" value="Yes, sign me up for the newsletter." />Yes, sign me up for the newsletter<br />
+<input type="radio" name="Newsletter" value="No, thank you." />No, thank  you.<br />
+<input type="submit" value="Submit" />
+<input type="reset" vlaue="Reset" />
+</form></body></html>`;
+
+//creating server
+const server = http.createServer((req, res) => {
+  //if request is GET and url is /form
+  if (req.url === "/form" && req.method == "GET") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    //then show the html form
+    res.write(posthtml);
+    //fs.createReadStream("./form.html", "UTF-8").pipe(res);
+    let data = "";
+    req.on("data", function (chunk) {
+      data += chunk;
+    });
+  }
+ 
+  else if (req.url === "/submit" && req.method == "POST") {
+    let data = "";
+    req.on("data", function (chunk) {
+      data += chunk;
+    });
+    req.on("end", function (chunk) {
+      //let formdata = querystring.parse(data);
+      const params = new URLSearchParams(body);
+      params.forEach((key, value) => {
+        output(key, value);
+      });
+      //console.log(formdata);
+    });
+  }
+});
+
+server.listen(5000, () => {
+  console.log(`Server running at http://localhost:5000`);
+});
