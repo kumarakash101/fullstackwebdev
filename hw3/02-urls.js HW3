@@ -1,0 +1,47 @@
+const http = require("http");
+var url = require("url");
+
+let htmlTable = "";
+
+const server = http.createServer((req, res) => {
+  //if this url
+
+  if (req.url === "/attributes?hello=world&lorem=ipsum") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    let paramString = urlString.split("?");
+    let params_arr = paramString.split("&");
+    for (let i = 0; i < params_arr.length; i++) {
+      let pair = params_arr[i].split("=");
+      htmlTable += "<tr><td>" + pair[0] + "</td><td>" + pair[1] + "</td></tr>";
+    }
+    res.write('<table border = "1">' + htmlTable + "</table>");
+  }
+  //if this URL
+  else if (req.url === "/items?first=1&second=2&third=3&fourth=4") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    let paramString = urlString.split("?");
+    let params_arr = paramString.split("&");
+    for (let i = 0; i < params_arr.length; i++) {
+      let pair = params_arr[i].split("=");
+      htmlTable += "<tr><td>" + pair[0] + "</td><td>" + pair[1] + "</td></tr>";
+    }
+    res.write('<table border = "1">' + htmlTable + "</table>");
+  }
+  //if this url
+  else if (
+    req.url === "/characters?spongebob=squarepants&patrick=star&sandy=cheeks"
+  ) {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    let paramString = urlString.split("?");
+    let params_arr = paramString.split("&");
+    for (let i = 0; i < params_arr.length; i++) {
+      let pair = params_arr[i].split("=");
+      htmlTable += "<tr><td>" + pair[0] + "</td><td>" + pair[1] + "</td></tr>";
+    }
+    res.write('<table border = "1">' + htmlTable + "</table>");
+  }
+});
+
+server.listen(5000, () => {
+  console.log(`Server running at http://localhost:5000`);
+});
